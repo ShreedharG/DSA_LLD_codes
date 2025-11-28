@@ -33,7 +33,7 @@ All topics are organized folder-wise for easy navigation and revision:
 - ✔️ 300+ solved problems with reusable templates  
 - ✔️ Topic-wise structured notes for fast revision  
 - ✔️ Focused on clarity, intuition, and optimization
-- 
+- ✔️ Added questions link for each problem - no more search!
 ---
 
 ## 🧰 Tech & Tools
