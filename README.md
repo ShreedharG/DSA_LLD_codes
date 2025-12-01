@@ -56,6 +56,15 @@ All topics are organized folder-wise for easy navigation and revision:
 - 👱🏻 HR/Project QnA template
 - 📌 Coding templates for contests  
 
+
+
+---
+
+<div align="center"> 
+  <img width="350" height="1000" src="https://media4.giphy.com/media/TvTvFbe0bnNVjhq0MB/giphy.gif"/> 
+  <p> One day they’ll call it talent — until then, it's work.</p>
+</div>
+
 ---
 
 ## 🤝 Contributions
