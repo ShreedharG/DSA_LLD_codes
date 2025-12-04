@@ -1,64 +1,5 @@
 https://leetcode.com/problems/n-queens/
-###### Check every time
-```
-class Solution {
-public:
-    bool isSafe(int row,int col,vector<string> &board,int n){
-        int r = row;int c = col;     
-        while(r>=0 && c>=0){
-            if(board[r][c]=='Q')
-                return false;
-            r--;
-            c--;
-        } 
-
-        r=row;c=col;        
-        while(c>=0){
-            if(board[r][c]=='Q')
-                return false;
-            c--;
-        }
-        
-        r=row;c=col;        
-        while(c>=0 && r<n){
-            if(board[r][c]=='Q')
-                return false;
-            c--;
-            r++;          
-        }
-        
-        return true;
-    }
-
-    void solve(int c,vector<string> &board,vector<vector<string>> &ans,int n){
-        if(c==n){
-            ans.push_back(board);
-            return;
-        }
-
-        for(int row=0;row<n;row++){
-            if(isSafe(row,c,board,n)){
-                board[row][c] = 'Q';
-                solve(c+1,board,ans,n);
-                board[row][c] = '.';
-            }
-        }
-    }
-
-    vector<vector<string>> solveNQueens(int n) {
-        vector<vector<string>> ans;
-        string s(n ,'.');
-        vector<string> board(n);
-
-        for(int i=0;i<n;i++)
-            board[i] = s;
-        solve(0,board,ans,n);
-        return ans;
-    }
-};
-```
-
-###### The 2nd approach makes use of arrays to store places already having a value
+###### Optimal Approach
 ```
 class Solution {
 public:
@@ -99,6 +40,48 @@ public:
             
         solve(0,board,ans,leftRow,upperDiagnol,lowerDiagnol,n);
         return ans;
+    }
+};
+```
+
+
+https://leetcode.com/problems/n-queens-ii/submissions/1845444056/
+###### Return Distinct Number of Sequences
+```
+class Solution {
+public:
+    void generate(int row,int n,vector<int>& usedCol,vector<int>& uUD,vector<int>& uLD,int& count){
+        if(row == n){
+            count++;
+            return;
+        }
+  
+        for(int col=0;col<n;col++){
+            int diag1 = n-1-(col-row);
+            int diag2 = row + col;
+
+            if(!usedCol[col] && !uUD[diag1] && !uLD[diag2]){
+                usedCol[col] = 1;
+                uUD[diag1] = 1;
+                uLD[diag2] = 1;
+                
+                generate(row+1,n,usedCol,uUD,uLD,count);
+  
+                usedCol[col] = 0;
+                uUD[diag1] = 0;
+                uLD[diag2] = 0;                
+            }
+        }
+    }
+  
+    int totalNQueens(int n) {        
+        vector<int> usedCol(n,0);
+        vector<int> usedUpperDiag(2*n-1,0);
+        vector<int> usedLowerDiag(2*n-1,0);
+        int count = 0;
+  
+        generate(0,n,usedCol,usedUpperDiag,usedLowerDiag,count);
+        return count;
     }
 };
 ```

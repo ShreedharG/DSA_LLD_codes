@@ -3,6 +3,10 @@ https://leetcode.com/problems/flood-fill/
 ```
 class Solution {
 public:
+	bool inBoard(int ni,int nj,int m,int n){
+		return (ni>=0 && ni<m && nj>=0 && nj<n);
+	}
+	
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
         int m = image.size();
         int n = image[0].size();
@@ -19,8 +23,7 @@ public:
         q.push({sr,sc});
 
         while(!q.empty()){
-            int i = q.front().first;
-            int j = q.front().second;
+            auto [i,j] = q.front();
             q.pop();
   
             for(int k=0;k<4;k++){
@@ -28,7 +31,7 @@ public:
                 int nj = j + dy[k];
 
 
-                if(ni>=0 && ni<m && nj>=0 && nj<n && image[ni][nj]==o_col){
+                if(inBoard(ni,nj,m,n) && image[ni][nj]==o_col){
                     q.push({ni,nj});
                     image[ni][nj] = color;
                 }
