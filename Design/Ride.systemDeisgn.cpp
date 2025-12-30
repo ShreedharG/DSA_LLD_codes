@@ -265,13 +265,6 @@ public:
             driver->updateAvailability(true);
         }
     }
-
-    void setDistance(double distance){
-        if(distance <= 0)
-            throw invalid_argument("Invalid distance");
-
-        rideDistance = distance;
-    }
     
     void completeRide(){
         if(status != RideCycle::ONGOING)
@@ -279,7 +272,7 @@ public:
         
         status = RideCycle::COMPLETED;
         driver->updateAvailability(true);
-
+        
         calculateFare();
     }
 };
