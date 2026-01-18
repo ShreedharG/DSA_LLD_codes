@@ -254,5 +254,92 @@ var chunk = function(arr, size) {
 };
 ```
 
+###### Add Prototype
+```
+Array.prototype.last = function() {
+    if (this.length === 0) return -1;
+    return this[this.length - 1];
+};
+```
+
+###### Group By
+```
+Array.prototype.groupBy = function(fn) {
+    const result = {};
+    
+    for(let i=0;i<this.length;i++){
+        const key = fn(this[i]);
+        if(!result[key]) result[key] = [];
+            
+        result[key].push(this[i]);
+    }
+
+    return result;
+};
+```
+
+###### Sort By
+```
+var sortBy = function(arr, fn) {
+    return arr.sort((a,b) => fn(a) - fn(b));    
+};
+```
+
+###### Merge Arrays by ID
+```
+var join = function(arr1, arr2) {
+    const cache = {};
+    
+    for(let i = 0; i < arr1.length; i++){
+        const key = arr1[i].id;
+        cache[key] = arr1[i];
+    }
+
+    for(let i = 0; i < arr2.length; i++){
+        const key = arr2[i].id;
+
+        if(cache[key]){
+            const obj1 = cache[key];
+            const obj2 = arr2[i];
+
+            for(let key in obj2)
+                obj1[key] = obj2[key]
+        }
+        else
+            cache[key] = arr2[i];
+    }
+    return Object.values(cache);
+
+};
+```
+
+###### Compact Object
+```
+var compactObject = function(obj) {
+    if (typeof obj !== "object" || obj === null) {
+        return obj;
+    }
+    
+    if(Array.isArray(obj)){
+        const result = [];
+        for(let i = 0; i < obj.length; i++){
+            const val = compactObject(obj[i]);
+            if(Boolean(val))
+                result.push(val);
+        }
+        return result;
+    }
+    
+    const result = {};
+    for(let key in obj){
+        const val = compactObject(obj[key]);
+        if(Boolean(val))
+            result[key] = val;
+    }
+    return result;
+};
+```
+
+
 Return -> [[SDE Prep Kit]]
 
