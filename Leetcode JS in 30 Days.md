@@ -181,7 +181,43 @@ async function sleep(millis) {
 
 ###### Timeout Cancellation
 ```
+var cancellable = function(fn, args, t) {
+    const timeOutId = setTimeout(() => {
+        fn(...args);
+    },t);
 
+    return function cancelFn() {
+        clearTimeout(timeOutId);
+    }
+};
+```
+
+###### Interval Cancellation
+```
+var cancellable = function(fn, args, t) {
+    fn(...args);
+    const repeatFn = setInterval(() => fn(...args),t);  
+
+    return function cancelFn(){
+        clearInterval(repeatFn);
+    }
+};
+```
+
+###### Time-Limit Promise
+```
+var timeLimit = function(fn, t) {
+    return async function(...args) {
+        const waitFn = fn(...args);
+        const waitPromise = new Promise((_,reject) => 
+            setTimeout(() => {
+                reject("Time Limit Exceeded");
+            },t);
+        });
+
+        return Promise.race([waitFn, waitPromise]);
+    }
+};
 ```
 
 # JSON
