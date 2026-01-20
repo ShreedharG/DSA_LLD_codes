@@ -12,3 +12,7 @@ It is an important concept in coding journey which allows us to see data analyti
 - [[Mergesort]]
 - [[Quicksort]]
 
+### Other Algos
+- [[Topological Sort Problems]]
+- [[Top K Elements - Bucket Sort]]
+

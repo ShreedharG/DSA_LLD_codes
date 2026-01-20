@@ -11,6 +11,7 @@ Executed in ~O(1) time complexity.
 - [[Union by Rank - Class DSU]]
 - [[Union by Size - Class DSU]]
 - [[Detect Cycle in Undirected Graph]]
+- [[Valid Tree Graph]]
 - [[Number of Provinces]]
 - [[Kruskal's Algorithm]]
 - [[Number of Connections Required]]
